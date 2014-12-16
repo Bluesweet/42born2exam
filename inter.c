@@ -1,18 +1,40 @@
+void	truc(char *str);
 #include <unistd.h>
 
 void	inter(char *s1, char *s2)
 {
 	int		i;
-	while (*s1)
+	int		j;
+	int		k = 0;
+	int		ctrl;
+	while (s1[k] != '\0')
 	{
 		i = 0;
-		while (s2[i])
+		while (s2[i] != '\0')
 		{
-			if (*s1 == s2[i])
-				write(1, s1, 1);
+			ctrl = 0;
+			if (s1[k] == s2[i])
+			{
+				j = k - 1;
+				while (s1[j] != s1[0])
+				{
+					if (s1[j] == s1[k])
+						ctrl += 1;
+					j--;
+				}
+				j = i - 1;
+				while (s2[j] != s2[0])
+				{
+					if (s2[j] == s2[i])
+						ctrl += 1;
+					j--;
+				}
+				if (ctrl == 0)
+					write(1, &s1[k], 1);
+			}
 			i++;
 		}
-		s1++;
+		k++;
 	}
 }
 
