@@ -1,17 +1,34 @@
 #include <stdlib.h>
 
+size_t	ft_strlen(const char *str)
+{
+	char	*tmp;
+	
+	tmp = (char*)str;
+	if (!str)
+		return (0);
+	while (*tmp)
+		++tmp;
+	return (tmp - str);
+}
+
+}
+
 char	*ft_strdup(const char *s)
 {
 	char	*dup;
-
+	int	i;
 	dup = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (dup == NULL)
+	if (!dup)
 		return (NULL);
 	else
 	{
-		while (s && *s)
-			*dup++ = *s++;
-		*dup = '\0';
+		while (s && s[i])
+		{
+			dup[i] = s[i];
+			i++;
+		}
+		dup[i] = '\0';
 	}
 	return (dup);
 }
